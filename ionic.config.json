@@ -1,0 +1,8 @@
+{
+  "name": "archtox",
+  "app_id": "e4cc4d36",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
