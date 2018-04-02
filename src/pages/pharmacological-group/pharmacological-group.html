@@ -5,11 +5,60 @@
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Grupo Farmacológico</ion-title>
+    <ion-title>
+      <img alt="logo" height="40" src="../../assets/imgs/archtox.png">
+      <img alt="logo" height="35" src="../../assets/imgs/grupo_farmacológico.png">
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="showToast('Deslice a la izquierda sobre un grupo para mas opciones.')">
+        <ion-icon name="information-circle"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-
+  <form #pharmaGroup="ngForm" (ngSubmit)="onSubmit(pharmaGroup)">
+    <ion-row>
+      <ion-col col-10>
+        <ion-list>
+          <ion-item>
+            <ion-label color="dark">
+              <ion-icon name="nuclear" item-left></ion-icon>Grupo Farmacológico:
+            </ion-label>
+            <ion-input name="grupo" type="text" ngModel clearInput required></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col col-2>
+        <br>
+        <button ion-button type="submit" block [disabled]="!pharmaGroup.valid">Nuevo grupo</button>
+      </ion-col>
+    </ion-row>
+  </form>
+  <br>
+  <ion-searchbar [showCancelButton]="true"
+                 placeholder="Buscar grupo farmacológico"
+                 (ionInput)="getItems($event)">
+  </ion-searchbar>
+  <br *ngIf="noInfo">
+  <p text-center *ngIf="noInfo">No existe este grupo farmacológico.</p>
+  <ion-list>
+    <ion-scroll [scrollY]="true">
+      <ion-item-sliding *ngFor="let group of groupsforfilter">
+        <button ion-item>
+          <h2>{{group.nombre}}</h2>
+        </button>
+        <ion-item-options side="right">
+          <button ion-button icon-only (click)="edit(group)" color="dark">
+            <ion-icon name="create"></ion-icon>
+          </button>
+          <button ion-button icon-only (click)="delete(group)" color="danger-light">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-scroll>
+  </ion-list>
 </ion-content>

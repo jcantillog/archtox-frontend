@@ -1,18 +1,108 @@
-<!--
-  Generated template for the DrugInfoPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>drug-info</ion-title>
+    <ion-title>
+      <img alt="logo" height="40" src="../../assets/imgs/archtox.png">
+      <img alt="logo" height="35" src="../../assets/imgs/fármaco.png">
+      <img *ngIf="option=='Nuevo'" alt="logo" height="35" src="../../assets/imgs/nuevo.png">
+      <img *ngIf="option=='Editar'" alt="logo" height="35" src="../../assets/imgs/editar.png">
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="onSubmit(drug)" color="danger-light" block [disabled]="!drug.valid || singlegroup==''">Crear fármaco</button>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-
+  <form #drug="ngForm">
+    <ion-list>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label color="dark">
+              <ion-icon name="bug" item-left></ion-icon>Nombre:
+            </ion-label>
+            <ion-input name="nombre" type="text" placeholder="Nombre Principal" ngModel clearInput required></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label color="dark">
+              <ion-icon name="medical" item-left></ion-icon>Molécula:
+            </ion-label>
+            <ion-input name="molecula" type="text" placeholder="Molécula" ngModel clearInput required></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label color="dark">
+              <ion-icon name="medkit" item-left></ion-icon>Otros nombres:
+            </ion-label>
+            <ion-textarea name="nombres" type="text" placeholder="Los nombres deben ir seguidos de coma y espaciados entre ellos. Por ejemplo: Otro Nombre 1 , Otro Nombre 2" ngModel required></ion-textarea>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label color="dark">
+              <ion-icon name="nuclear" item-left></ion-icon>Grupo farmacológico
+            </ion-label>
+            <ion-select [(ngModel)]="singlegroup" [ngModelOptions]="{standalone: true}" interface="popover">
+              <ion-option *ngFor="let group of allgroups" [value]="group._id">{{group.nombre}}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label color="dark">
+              <ion-icon name="list-box" item-left></ion-icon>Tratamiento
+            </ion-label>
+          </ion-item>
+          <textarea style="width: 100%" name="tratamiento" rows="10" type="text" ngModel required></textarea>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label color="dark">
+              <ion-icon name="remove-circle" item-left></ion-icon>Eliminación
+            </ion-label>
+          </ion-item>
+          <textarea style="width: 100%" name="eliminacion" rows="10" type="text" ngModel required></textarea>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label color="dark">
+              <ion-icon name="contact" item-left></ion-icon>Paciente
+            </ion-label>
+          </ion-item>
+          <textarea style="width: 100%" name="paciente" rows="10" type="text" ngModel required></textarea>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label color="dark">
+              <ion-icon name="color-filter" item-left></ion-icon>Absorción
+            </ion-label>
+          </ion-item>
+          <textarea style="width: 100%" name="absorcion" rows="10" type="text" ngModel required></textarea>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label color="dark">
+              <ion-icon name="alert" item-left></ion-icon>Terapia
+            </ion-label>
+          </ion-item>
+          <textarea style="width: 100%" name="terapia" rows="10" type="text" ngModel required></textarea>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </form>
 </ion-content>

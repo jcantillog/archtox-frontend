@@ -11,6 +11,9 @@ import {DrugPage} from "../pages/drug/drug";
 import {PharmacologicalGroupPage} from "../pages/pharmacological-group/pharmacological-group";
 import {DrugInfoPage} from "../pages/drug-info/drug-info";
 import {UserPage} from "../pages/user/user";
+import {PharmagroupService} from "../services/pharmagroup.service";
+import {HttpClientModule} from "@angular/common/http";
+import {RolService} from "../services/rol.service";
 
 @NgModule({
   declarations: [
@@ -24,6 +27,7 @@ import {UserPage} from "../pages/user/user";
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -39,6 +43,8 @@ import {UserPage} from "../pages/user/user";
   providers: [
     StatusBar,
     SplashScreen,
+    PharmagroupService,
+    RolService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
