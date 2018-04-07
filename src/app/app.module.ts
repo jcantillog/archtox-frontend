@@ -14,6 +14,12 @@ import {UserPage} from "../pages/user/user";
 import {PharmagroupService} from "../services/pharmagroup.service";
 import {HttpClientModule} from "@angular/common/http";
 import {RolService} from "../services/rol.service";
+import {UserService} from "../services/user.service";
+import {AccesoService} from "../services/acceso.service";
+import {AuthService} from "../services/auth.service";
+import {IonicStorageModule} from "@ionic/storage";
+import {FarmacoService} from "../services/farmaco.service";
+import {InfofarmacoService} from "../services/infofarmaco.service";
 
 @NgModule({
   declarations: [
@@ -28,7 +34,8 @@ import {RolService} from "../services/rol.service";
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,8 +50,13 @@ import {RolService} from "../services/rol.service";
   providers: [
     StatusBar,
     SplashScreen,
+    AuthService,
     PharmagroupService,
     RolService,
+    UserService,
+    AccesoService,
+    FarmacoService,
+    InfofarmacoService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

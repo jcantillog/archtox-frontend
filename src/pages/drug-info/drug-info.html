@@ -7,7 +7,8 @@
       <img *ngIf="option=='Editar'" alt="logo" height="35" src="../../assets/imgs/editar.png">
     </ion-title>
     <ion-buttons end>
-      <button ion-button (click)="onSubmit(drug)" color="danger-light" block [disabled]="!drug.valid || singlegroup==''">Crear fármaco</button>
+      <button *ngIf="option=='Nuevo'" ion-button (click)="onSubmit(drug)" color="danger-light" block [disabled]="!drug.valid || singlegroup==''">Crear fármaco</button>
+      <button *ngIf="option=='Editar'" ion-button (click)="onEdit(drug)" color="danger-light" block [disabled]="!drug.valid || singlegroup==''">Editar fármaco</button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -47,7 +48,7 @@
             <ion-label color="dark">
               <ion-icon name="nuclear" item-left></ion-icon>Grupo farmacológico
             </ion-label>
-            <ion-select [(ngModel)]="singlegroup" [ngModelOptions]="{standalone: true}" interface="popover">
+            <ion-select [(ngModel)]="singlegroup" name="select" interface="popover">
               <ion-option *ngFor="let group of allgroups" [value]="group._id">{{group.nombre}}</ion-option>
             </ion-select>
           </ion-item>

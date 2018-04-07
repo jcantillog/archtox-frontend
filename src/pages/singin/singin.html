@@ -1,18 +1,20 @@
 <ion-content padding>
   <ion-title text-center>
-    <img alt="logo" src="../../assets/imgs/archtox.png">
+    <img alt="logo" height="300" src="../../assets/imgs/archtox.png">
   </ion-title>
   <br>
-  <ion-list>
-    <ion-item>
-      <ion-label floating>Usuario</ion-label>
-      <ion-input type="number"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label floating>Contraseña</ion-label>
-      <ion-input type="password"></ion-input>
-    </ion-item>
-  </ion-list>
-  <br>
-  <button ion-button block color="danger">Login</button>
+  <form #f="ngForm" (ngSubmit)="onSignin(f)" style="margin: 0 250px 0 250px">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Usuario</ion-label>
+        <ion-input minlength="8" name="identificacion" type="number" ngModel clearInput required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Contraseña</ion-label>
+        <ion-input name="contraseña" type="password" ngModel clearInput required></ion-input>
+      </ion-item>
+    </ion-list>
+    <br>
+    <button ion-button block round type="submit" [disabled]="!f.valid">Login</button>
+  </form>
 </ion-content>

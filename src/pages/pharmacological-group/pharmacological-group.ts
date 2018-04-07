@@ -1,5 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {AlertController, IonicPage, LoadingController, NavController, NavParams, ToastController} from 'ionic-angular';
+import {
+    AlertController,
+    Events,
+    IonicPage,
+    LoadingController,
+    NavController,
+    NavParams,
+    ToastController
+} from 'ionic-angular';
 import {NgForm} from "@angular/forms";
 import {PharmagroupService} from "../../services/pharmagroup.service";
 import {GroupModel} from "../../model/group.model";
@@ -17,7 +25,8 @@ export class PharmacologicalGroupPage implements OnInit{
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
                 private pharmagroupService: PharmagroupService, private loadingCtrl: LoadingController,
-                private toastCtrl: ToastController, private alertCtrl: AlertController) {}
+                private toastCtrl: ToastController, private alertCtrl: AlertController,
+                private events: Events) {}
 
     ngOnInit(){
         this.getAllGroups();
@@ -34,10 +43,16 @@ export class PharmacologicalGroupPage implements OnInit{
                     loader.dismiss();
                     this.showToast('Grupo farmacológico agregado con éxito!');
                     this.getAllGroups();
+                    form.reset();
                 },
                 error => {
                     loader.dismiss();
-                    this.showToast('Ha ocurrido un error al momento de agregar el grupo, por favor intente de nuevo.')
+                    if(error.status == 0){
+                        this.events.publish('system:errorHandler', "Tiempo de sesión finalizado", "Fármaco", 401);
+                    } else {
+                        this.events.publish('system:errorHandler', error.error+", "+error.statusText, "Fármaco", error.status);
+                    }
+                    //this.showToast('Ha ocurrido un error al momento de agregar el grupo, por favor intente de nuevo.')
                 }
             )
     }
@@ -58,7 +73,12 @@ export class PharmacologicalGroupPage implements OnInit{
                 },
                 error => {
                     loader.dismiss();
-                    this.showToast('Ha ocurrido un error al momento de cargar los grupos, por favor actualice la página.')
+                    if(error.status == 0){
+                        this.events.publish('system:errorHandler', "Tiempo de sesión finalizado", "Fármaco", 401);
+                    } else {
+                        this.events.publish('system:errorHandler', error.error+", "+error.statusText, "Fármaco", error.status);
+                    }
+                    //this.showToast('Ha ocurrido un error al momento de cargar los grupos, por favor actualice la página.')
                 }
             )
     }
@@ -114,7 +134,12 @@ export class PharmacologicalGroupPage implements OnInit{
                                 },
                                 error => {
                                     loader.dismiss();
-                                    this.showToast('Ha ocurrido un error al momento de eliminar el grupo, por favor intente de nuevo.')
+                                    if(error.status == 0){
+                                        this.events.publish('system:errorHandler', "Tiempo de sesión finalizado", "Fármaco", 401);
+                                    } else {
+                                        this.events.publish('system:errorHandler', error.error+", "+error.statusText, "Fármaco", error.status);
+                                    }
+                                    //this.showToast('Ha ocurrido un error al momento de eliminar el grupo, por favor intente de nuevo.')
                                 }
                             )
                     }
@@ -160,7 +185,12 @@ export class PharmacologicalGroupPage implements OnInit{
                                 },
                                 error => {
                                     loader.dismiss();
-                                    this.showToast('Ha ocurrido un error al momento de editar el grupo, por favor intente de nuevo.')
+                                    if(error.status == 0){
+                                        this.events.publish('system:errorHandler', "Tiempo de sesión finalizado", "Fármaco", 401);
+                                    } else {
+                                        this.events.publish('system:errorHandler', error.error+", "+error.statusText, "Fármaco", error.status);
+                                    }
+                                    //this.showToast('Ha ocurrido un error al momento de editar el grupo, por favor intente de nuevo.')
                                 }
                             )
                     }

@@ -43,7 +43,7 @@
                  (ionInput)="getItems($event)">
   </ion-searchbar>
   <br *ngIf="noInfo">
-  <p text-center *ngIf="noInfo">No existe este grupo farmacológico.</p>
+  <p text-center *ngIf="noInfo">No se encontraron grupos farmacológicos.</p>
   <ion-list>
     <ion-scroll [scrollY]="true">
       <ion-item-sliding *ngFor="let group of groupsforfilter">

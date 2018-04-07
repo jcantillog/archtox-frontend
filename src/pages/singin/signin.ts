@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the SinginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {Events, IonicPage, LoadingController} from 'ionic-angular';
+import {NgForm} from "@angular/forms";
+import {AuthService} from "../../services/auth.service";
 
 @IonicPage()
 @Component({
@@ -15,11 +10,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SigninPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private loadingCtrl: LoadingController, private authService: AuthService,
+              private events: Events) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SinginPage');
-  }
-
+  onSignin(form: NgForm){
+        const loading = this.loadingCtrl.create({
+            content: 'Iniciando sesión...'
+        });
+        loading.present();
+        this.authService.signin(form.value.identificacion, form.value.contraseña)
+            .subscribe(
+                data => {
+                    loading.dismiss();
+                    this.events.publish('user:authenticated', data);
+                },
+                error => {
+                    loading.dismiss();
+                    //console.log(JSON.parse(error));
+                    this.events.publish('system:errorHandler', error.error+", "+error.statusText, "Inicio de sesión", error.status);
+                }
+            );
+    }
 }

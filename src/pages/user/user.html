@@ -9,6 +9,11 @@
       <img alt="logo" height="40" src="../../assets/imgs/archtox.png">
       <img alt="logo" height="35" src="../../assets/imgs/usuarios.png">
     </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="showToast('Deslice a la izquierda sobre un usuario para mas opciones.')">
+        <ion-icon name="information-circle"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -17,7 +22,7 @@
   <ion-grid>
     <ion-row>
       <ion-col col-6>
-        <form #user="ngForm" (ngSubmit)="onSubmit(user)">
+        <form #userf="ngForm" (ngSubmit)="onSubmit(userf)">
           <ion-list>
             <ion-row>
               <ion-col col-7>
@@ -33,7 +38,7 @@
                   <ion-label color="dark">
                     <ion-icon name="nuclear" item-left></ion-icon>Rol:
                   </ion-label>
-                  <ion-select [(ngModel)]="singlerol" [ngModelOptions]="{standalone: true}" interface="popover">
+                  <ion-select [(ngModel)]="singlerol" name="select" interface="popover">
                     <ion-option *ngFor="let rol of allroles" [value]="rol._id">{{rol.nombre}}</ion-option>
                   </ion-select>
                 </ion-item>
@@ -73,11 +78,38 @@
               <ion-input name="contraseña2" type="password" placeholder="*******" ngModel clearInput required></ion-input>
             </ion-item>
           </ion-list>
-          <button ion-button type="submit" color="danger-light" block [disabled]="!user.valid">Crear Usuario</button>
         </form>
+        <ion-row>
+          <ion-col>
+            <button *ngIf="!edition" ion-button block (click)="onSubmit(userf)" color="danger-light" [disabled]="!userf.valid">Crear Usuario</button>
+            <button *ngIf="edition" ion-button block (click)="editUser(userf)" color="danger-light" [disabled]="!userf.valid">Editar Usuario</button>
+          </ion-col>
+          <ion-col>
+            <button ion-button block (click)="limpiarFormulario(userf)" outline color="danger-light">Limpiar</button>
+          </ion-col>
+        </ion-row>
       </ion-col>
       <ion-col>
-
+        <ion-searchbar [showCancelButton]="true"
+                       placeholder="Buscar usuario"
+                       (ionInput)="getItems($event)">
+        </ion-searchbar>
+        <br *ngIf="noInfo">
+        <p text-center *ngIf="noInfo">No se encontraron usuarios.</p>
+        <ion-list>
+          <ion-scroll [scrollY]="true">
+            <ion-item-sliding *ngFor="let user of usersforfilter">
+              <button ion-item (click)="llenarFormulario(userf, user)" (press)="edit(userf, user)">
+                <h2>{{user.nombre}} {{user.apellidos}}</h2>
+              </button>
+              <ion-item-options side="right">
+                <button ion-button icon-only (click)="edit(userf, user)" color="dark">
+                  <ion-icon name="create"></ion-icon>
+                </button>
+              </ion-item-options>
+            </ion-item-sliding>
+          </ion-scroll>
+        </ion-list>
       </ion-col>
     </ion-row>
   </ion-grid>

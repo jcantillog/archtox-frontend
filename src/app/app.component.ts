@@ -1,6 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {
-    AlertController, LoadingController, MenuController, NavController, Platform,
+    AlertController, Events, LoadingController, MenuController, NavController, Platform,
     ToastController
 } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -9,6 +9,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {SigninPage} from "../pages/singin/signin";
 import {GuidesPage} from "../pages/guides/guides";
 import {UserPage} from "../pages/user/user";
+import {AuthenticationModel} from "../model/authentication.model";
+import {AuthService} from "../services/auth.service";
 @Component({
   templateUrl: 'app.html'
 })
@@ -25,14 +27,30 @@ export class MyApp {
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
               private menuCtrl: MenuController, private alertCtrl: AlertController,
-              private loadingCtrl: LoadingController, private toastCtrl: ToastController) {
+              private loadingCtrl: LoadingController, private toastCtrl: ToastController,
+              private events: Events, private authService: AuthService) {
+      events.subscribe('user:authenticated', (user: AuthenticationModel) => {
+          this.setAuth(true);
+      });
+      events.subscribe('system:errorHandler', (status, type, errortype) => {
+          this.errorHandler(status, type, errortype);
+      });
+
+      authService.verify()
+          .then((auth: AuthenticationModel) =>{
+              if(auth!=null){
+                  this.setAuth(true);
+              }else{
+                  this.setAuth(false);
+              }
+          })
+          .catch(error => console.log(error));
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
     });
-    this.setAuth(true);
   }
 
   setAuth(auth: boolean){
@@ -86,7 +104,7 @@ export class MyApp {
           content: 'Cerrando sesión...'
       });
       loading.present();
-      // this.authService.signout();
+      this.authService.signout();
       this.menuCtrl.close();
       this.setAuth(false);
       let toast = this.toastCtrl.create({
@@ -102,7 +120,7 @@ export class MyApp {
   errorHandler(status: string, type: string, errortype: number){
       let toast = this.toastCtrl.create({
           message: 'Error en: '+type+' ('+status+')',
-          position: 'middle',
+          position: 'bottom',
           showCloseButton: true,
           closeButtonText: 'Ok'
       });

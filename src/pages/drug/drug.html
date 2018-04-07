@@ -13,7 +13,7 @@
       <button ion-button icon-only (click)="toSearch(true)">
         <ion-icon name="search"></ion-icon>
       </button>
-      <button ion-button icon-only (click)="showToast()">
+      <button ion-button icon-only (click)="showToast('Deslice a la izquierda sobre un fármaco para mas opciones.')">
         <ion-icon name="information-circle"></ion-icon>
       </button>
     </ion-buttons>
@@ -40,20 +40,19 @@
     </button>
   </ion-fab>
   <ion-list>
-    <ion-item-sliding> <!--(ionDrag)="onDrag($event)"-->
-      <button ion-item (click)="itemSelected(item)">
+    <br *ngIf="noInfo">
+    <p text-center *ngIf="noInfo">No se encontraron fármacos.</p>
+    <ion-item-sliding *ngFor="let drug of drugsforfilter">
+      <button ion-item (click)="itemSelected(drug)">
         <ion-avatar item-start>
           <img src="../../assets/imgs/drug.jpg">
         </ion-avatar>
-        <h2>Woody</h2>
-        <p>This town ain't big enough for the two of us!</p>
-        <ion-note item-end>3:43 pm</ion-note>
+        <h2>{{drug.nombre}}</h2>
+        <p>{{drug.nombres}}</p>
+        <ion-note item-end>{{drug.molecula}}</ion-note>
       </button>
       <ion-item-options side="right">
-        <button ion-button icon-only (click)="delete()" color="dark">
-          <ion-icon name="create"></ion-icon>
-        </button>
-        <button ion-button icon-only (click)="delete()" color="danger-light">
+        <button ion-button icon-only (click)="delete(drug)" color="danger-light">
           <ion-icon name="trash"></ion-icon>
         </button>
       </ion-item-options>
