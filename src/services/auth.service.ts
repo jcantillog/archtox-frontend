@@ -13,7 +13,8 @@ export class AuthService{
     private authInfo: AuthenticationModel;
 
     constructor(private storage: Storage, private http: HttpClient){
-        this.url = 'http://localhost:3000/';
+        //this.url = 'http://localhost:3000/';
+        this.url = 'https://archtox.herokuapp.com/';
         this.sub_url = 'login/';
     }
 
