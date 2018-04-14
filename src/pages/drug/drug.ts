@@ -1,11 +1,10 @@
 import {Component} from '@angular/core';
-import {AlertController, Events, IonicPage, LoadingController, NavController, ToastController} from 'ionic-angular';
+import {AlertController, Events, LoadingController, NavController, ToastController} from 'ionic-angular';
 import {DrugInfoPage} from "../drug-info/drug-info";
 import {DrugModel} from "../../model/drug.model";
 import {FarmacoService} from "../../services/farmaco.service";
 import {InfofarmacoService} from "../../services/infofarmaco.service";
 
-@IonicPage()
 @Component({
   selector: 'page-drug',
   templateUrl: 'drug.html',

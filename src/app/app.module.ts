@@ -20,6 +20,9 @@ import {AuthService} from "../services/auth.service";
 import {IonicStorageModule} from "@ionic/storage";
 import {FarmacoService} from "../services/farmaco.service";
 import {InfofarmacoService} from "../services/infofarmaco.service";
+import {AntidotePage} from "../pages/antidote/antidote";
+import {AntidoteService} from "../services/antidote.service";
+import {AntidoteInfoPage} from "../pages/antidote-info/antidote-info";
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import {InfofarmacoService} from "../services/infofarmaco.service";
     DrugPage,
     DrugInfoPage,
     PharmacologicalGroupPage,
-    UserPage
+    UserPage,
+    AntidotePage,
+    AntidoteInfoPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +50,9 @@ import {InfofarmacoService} from "../services/infofarmaco.service";
     DrugPage,
     DrugInfoPage,
     PharmacologicalGroupPage,
-    UserPage
+    UserPage,
+    AntidotePage,
+    AntidoteInfoPage
   ],
   providers: [
     StatusBar,
@@ -57,6 +64,7 @@ import {InfofarmacoService} from "../services/infofarmaco.service";
     AccesoService,
     FarmacoService,
     InfofarmacoService,
+    AntidoteService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

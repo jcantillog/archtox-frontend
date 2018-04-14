@@ -74,6 +74,25 @@ export class MyApp {
       this.menuCtrl.close();
   }
 
+  showCredits(){
+      let alert = this.alertCtrl.create({
+          title: 'Información del sitio ArchTox',
+          subTitle: 'Participantes del proyecto',
+          message: 'Rubén Darío Salas: <br>Químico Farmacéutico, M.Sc., Ph.D.<br><br>' +
+                    'Erick Guerrero Archbold: <br>Químico Farmacéutico.<br><br>' +
+                    'Jonathan C. Cantillo G.: <br>Front-end Software Developer.<br><br>' +
+                    'Ever Cabarcas Mallarino: <br>Back-end Software Developer',
+          buttons: [
+              {
+                  text: 'Aceptar',
+                  role: 'cancel',
+                  handler: () => {}
+              }
+          ]
+      });
+      alert.present();
+  }
+
   onLogout(closing: number = 0){
       if(closing == 1){
           let alert = this.alertCtrl.create({

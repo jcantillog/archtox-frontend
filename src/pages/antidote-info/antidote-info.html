@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <img alt="logo" height="40" src="./assets/imgs/archtox.png">
+      <img alt="logo" height="35" src="./assets/imgs/antidotos.png">
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="onEdit(antidoteForm)" color="danger-light" block [disabled]="!antidoteForm.valid">Editar antídoto</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form #antidoteForm="ngForm">
+    <ion-list>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label color="dark">
+              <ion-icon name="bug" item-left></ion-icon>Nombre:
+            </ion-label>
+            <ion-input name="nombre" type="text" placeholder="Nombre del antídoto" ngModel clearInput required></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label color="dark">
+              <ion-icon name="list-box" item-left></ion-icon>Descripción:
+            </ion-label>
+          </ion-item>
+          <textarea style="width: 100%" name="descripcion" rows="10" type="text" ngModel required></textarea>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </form>
+</ion-content>

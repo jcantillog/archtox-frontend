@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {
     AlertController,
     Events,
-    IonicPage,
     LoadingController,
     NavController,
     NavParams,
@@ -12,7 +11,6 @@ import {NgForm} from "@angular/forms";
 import {PharmagroupService} from "../../services/pharmagroup.service";
 import {GroupModel} from "../../model/group.model";
 
-@IonicPage()
 @Component({
     selector: 'page-pharmacological-group',
     templateUrl: 'pharmacological-group.html',

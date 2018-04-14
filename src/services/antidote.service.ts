@@ -4,9 +4,8 @@ import 'rxjs/Rx';
 import {AuthService} from "./auth.service";
 
 @Injectable()
-export class UserService{
+export class AntidoteService{
 
-    //https://archtox.herokuapp.com/
     private url: string;
     private sub_url: string;
 
@@ -14,37 +13,37 @@ export class UserService{
 
     constructor(private http: HttpClient, private authService: AuthService){
         this.url = 'http://localhost:3000/';
-        // this.url = 'https://archtox.herokuapp.com/';
-        this.sub_url = 'users/';
+        //this.url = 'https://archtox.herokuapp.com/';
+        this.sub_url = 'antidoto/';
     };
 
-    addUser(id_user: string, id_rol: string, nombre: string, apellidos: string, correo: string, key_pass: string){
+    addAntidote(nombre: string, descripcion: string){
         this.token_archtox = this.authService.getAuthInfo().token_archtox ? '?token_archtox=' + this.authService.getAuthInfo().token_archtox: '';
-        const body = {id_user: id_user, id_rol: id_rol, nombre: nombre, apellidos: apellidos, correo: correo, key_pass: key_pass};
+        const body = {nombre: nombre, descripcion: descripcion};
         const headers = new HttpHeaders({'Content-Type': 'application/json'});
         return this.http.post(this.url+this.sub_url+this.token_archtox, body, {headers: headers});
     }
 
-    getUser(id: string){
+    getAntidote(id: string){
         this.token_archtox = this.authService.getAuthInfo().token_archtox ? '?token_archtox=' + this.authService.getAuthInfo().token_archtox: '';
         const headers = new HttpHeaders({'Content-Type': 'application/json'});
         return this.http.get(this.url+this.sub_url+id+this.token_archtox, {headers: headers});
     }
 
-    getUsers(){
+    getAntidotes(){
         this.token_archtox = this.authService.getAuthInfo().token_archtox ? '?token_archtox=' + this.authService.getAuthInfo().token_archtox: '';
         const headers = new HttpHeaders({'Content-Type': 'application/json'});
         return this.http.get(this.url+this.sub_url+this.token_archtox, {headers: headers})
     }
 
-    updateUser(id: string, id_user: string, id_rol: string, nombre: string, apellidos: string, correo: string){
+    updateAntidote(id: string, nombre: string, descripcion: string){
         this.token_archtox = this.authService.getAuthInfo().token_archtox ? '?token_archtox=' + this.authService.getAuthInfo().token_archtox: '';
-        const body = {id_user: id_user, id_rol: id_rol, nombre: nombre, apellidos: apellidos, correo: correo};
+        const body = {nombre: nombre, descripcion: descripcion};
         const headers = new HttpHeaders({'Content-Type': 'application/json'});
         return this.http.put(this.url+this.sub_url+id+this.token_archtox, body, {headers: headers});
     }
 
-    deleteUser(id: string){
+    deleteAntidote(id: string){
         this.token_archtox = this.authService.getAuthInfo().token_archtox ? '?token_archtox=' + this.authService.getAuthInfo().token_archtox: '';
         const headers = new HttpHeaders({'Content-Type': 'application/json'});
         return this.http.delete(this.url+this.sub_url+id+this.token_archtox, {headers: headers});

@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Events, IonicPage, LoadingController, NavController, NavParams, ToastController} from 'ionic-angular';
+import {Events, LoadingController, NavController, NavParams, ToastController} from 'ionic-angular';
 import {PharmagroupService} from "../../services/pharmagroup.service";
 import {GroupModel} from "../../model/group.model";
 import {NgForm} from "@angular/forms";
@@ -8,7 +8,6 @@ import {DrugModel} from "../../model/drug.model";
 import {InfodrugModel} from "../../model/infodrug.model";
 import {FarmacoService} from "../../services/farmaco.service";
 
-@IonicPage()
 @Component({
   selector: 'page-drug-info',
   templateUrl: 'drug-info.html',
@@ -70,7 +69,7 @@ export class DrugInfoPage implements OnInit{
             closeButtonText: "OK"
         });
         toast.present();
-    }
+  }
 
   onSubmit(form: NgForm){
       let loader = this.loadingCtrl.create({

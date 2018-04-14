@@ -6,8 +6,8 @@
       </button>
     </ion-buttons>
     <ion-title>
-      <img alt="logo" height="40" src="../../assets/imgs/archtox.png">
-      <img alt="logo" height="35" src="../../assets/imgs/grupo_farmacológico.png">
+      <img alt="logo" height="40" src="./assets/imgs/archtox.png">
+      <img alt="logo" height="35" src="./assets/imgs/grupo_farmacologico.png">
     </ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="showToast('Deslice a la izquierda sobre un grupo para mas opciones.')">
@@ -16,7 +16,6 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-
 
 <ion-content padding>
   <form #pharmaGroup="ngForm" (ngSubmit)="onSubmit(pharmaGroup)">

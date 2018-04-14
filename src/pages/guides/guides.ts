@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
 import {PharmacologicalGroupPage} from "../pharmacological-group/pharmacological-group";
 import {DrugPage} from "../drug/drug";
+import {AntidotePage} from "../antidote/antidote";
 
-@IonicPage()
 @Component({
   selector: 'page-guides',
   templateUrl: 'guides.html',
@@ -11,4 +10,5 @@ import {DrugPage} from "../drug/drug";
 export class GuidesPage {
   pharmacologicalGroupPage = PharmacologicalGroupPage;
   drugPage = DrugPage;
+  antidotePage = AntidotePage;
 }

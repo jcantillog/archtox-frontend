@@ -1,10 +1,10 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      <img alt="logo" height="40" src="../../assets/imgs/archtox.png">
-      <img alt="logo" height="35" src="../../assets/imgs/fármaco.png">
-      <img *ngIf="option=='Nuevo'" alt="logo" height="35" src="../../assets/imgs/nuevo.png">
-      <img *ngIf="option=='Editar'" alt="logo" height="35" src="../../assets/imgs/editar.png">
+      <img alt="logo" height="40" src="./assets/imgs/archtox.png">
+      <img alt="logo" height="35" src="./assets/imgs/farmaco.png">
+      <img *ngIf="option=='Nuevo'" alt="logo" height="35" src="./assets/imgs/nuevo.png">
+      <img *ngIf="option=='Editar'" alt="logo" height="35" src="./assets/imgs/editar.png">
     </ion-title>
     <ion-buttons end>
       <button *ngIf="option=='Nuevo'" ion-button (click)="onSubmit(drug)" color="danger-light" block [disabled]="!drug.valid || singlegroup==''">Crear fármaco</button>
@@ -58,7 +58,7 @@
         <ion-col>
           <ion-item>
             <ion-label color="dark">
-              <ion-icon name="list-box" item-left></ion-icon>Tratamiento
+              <ion-icon name="list-box" item-left></ion-icon>Sintomatología
             </ion-label>
           </ion-item>
           <textarea style="width: 100%" name="tratamiento" rows="10" type="text" ngModel required></textarea>
@@ -68,7 +68,7 @@
         <ion-col>
           <ion-item>
             <ion-label color="dark">
-              <ion-icon name="remove-circle" item-left></ion-icon>Eliminación
+              <ion-icon name="remove-circle" item-left></ion-icon>Abordaje del paciente intoxicado
             </ion-label>
           </ion-item>
           <textarea style="width: 100%" name="eliminacion" rows="10" type="text" ngModel required></textarea>
@@ -78,7 +78,7 @@
         <ion-col>
           <ion-item>
             <ion-label color="dark">
-              <ion-icon name="contact" item-left></ion-icon>Paciente
+              <ion-icon name="contact" item-left></ion-icon>Tratamiento específico
             </ion-label>
           </ion-item>
           <textarea style="width: 100%" name="paciente" rows="10" type="text" ngModel required></textarea>
@@ -88,7 +88,7 @@
         <ion-col>
           <ion-item>
             <ion-label color="dark">
-              <ion-icon name="color-filter" item-left></ion-icon>Absorción
+              <ion-icon name="color-filter" item-left></ion-icon>Diagnóstico
             </ion-label>
           </ion-item>
           <textarea style="width: 100%" name="absorcion" rows="10" type="text" ngModel required></textarea>
@@ -98,9 +98,10 @@
         <ion-col>
           <ion-item>
             <ion-label color="dark">
-              <ion-icon name="alert" item-left></ion-icon>Terapia
+              <ion-icon name="alert" item-left></ion-icon>Criterios de alta o traslado a UCI
             </ion-label>
           </ion-item>
+
           <textarea style="width: 100%" name="terapia" rows="10" type="text" ngModel required></textarea>
         </ion-col>
       </ion-row>

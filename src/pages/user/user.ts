@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Events, IonicPage, LoadingController, NavController, NavParams, ToastController} from 'ionic-angular';
+import {Events, LoadingController, NavController, NavParams, ToastController} from 'ionic-angular';
 import {RolModel} from "../../model/rol.model";
 import {NgForm} from "@angular/forms";
 import {RolService} from "../../services/rol.service";
@@ -7,7 +7,6 @@ import {UserService} from "../../services/user.service";
 import {UserModel} from "../../model/user.model";
 import {AccesoService} from "../../services/acceso.service";
 
-@IonicPage()
 @Component({
   selector: 'page-user',
   templateUrl: 'user.html',

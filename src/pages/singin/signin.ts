@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import {Events, IonicPage, LoadingController} from 'ionic-angular';
+import {Events, LoadingController} from 'ionic-angular';
 import {NgForm} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 
-@IonicPage()
 @Component({
   selector: 'page-singin',
   templateUrl: 'singin.html',
