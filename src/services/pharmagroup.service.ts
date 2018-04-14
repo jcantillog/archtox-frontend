@@ -6,7 +6,6 @@ import {AuthService} from "./auth.service";
 @Injectable()
 export class PharmagroupService{
 
-    //https://archtox.herokuapp.com/
     private url: string;
     private sub_url: string;
 
@@ -14,7 +13,7 @@ export class PharmagroupService{
 
     constructor(private http: HttpClient, private authService: AuthService){
         this.url = 'http://localhost:3000/';
-        // this.url = 'https://archtox.herokuapp.com/';
+        this.url = 'https://archtox.herokuapp.com/';
         this.sub_url = 'grupofarmacologico/';
     };
 

@@ -12,8 +12,8 @@ export class AntidoteService{
     private token_archtox: string;
 
     constructor(private http: HttpClient, private authService: AuthService){
-        this.url = 'http://localhost:3000/';
-        //this.url = 'https://archtox.herokuapp.com/';
+        // this.url = 'http://localhost:3000/';
+        this.url = 'https://archtox.herokuapp.com/';
         this.sub_url = 'antidoto/';
     };
 

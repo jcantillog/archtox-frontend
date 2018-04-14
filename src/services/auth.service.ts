@@ -7,14 +7,13 @@ import {AuthenticationModel} from "../model/authentication.model";
 @Injectable()
 export class AuthService{
 
-    //https://archtox.herokuapp.com/
     private url: string;
     private sub_url: string;
     private authInfo: AuthenticationModel;
 
     constructor(private storage: Storage, private http: HttpClient){
-        this.url = 'http://localhost:3000/';
-        // this.url = 'https://archtox.herokuapp.com/';
+        // this.url = 'http://localhost:3000/';
+        this.url = 'https://archtox.herokuapp.com/';
         this.sub_url = 'login/';
     }
 
